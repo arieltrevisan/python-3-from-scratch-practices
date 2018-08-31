@@ -2,6 +2,13 @@ import pytest
 
 """
 
+Required modules:
+    pip3 install pytest
+    pip3 install pytest-ordering
+
+https://docs.pytest.org/en/latest/
+https://pytest-ordering.readthedocs.io/en/develop/
+
 Run all tests under path:
 > pytest [path]
 
@@ -34,10 +41,13 @@ def pyt_yield_fixture():
     print(" > end", end='')
 
 
+# using module pytest-ordering
+@pytest.mark.run(order=2)
 def test_1(pyt_fixture):
     assert pyt_fixture == 10
 
 
+@pytest.mark.run(order=1)
 def test_2(pyt_yield_fixture):
     assert 50 > 10
 
